@@ -17,16 +17,17 @@
 In an attempt to better isolate concerns, we loosely follow some domain driven development (DDD) principles.
 Namely, we have added a `services` directory under `app`.
 
-    :::
-    |-root
-      |-app
-        |-assets
-        |-controllers
-        |-helpers
-        |-mailers
-        |-models
-        |-services <-----
-        |-views
+```
+|-root
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-models
+    |-services <-----
+    |-views
+```
 
 **All use cases that meet the following criteria must be organized as service objects under the `services` directory.**
 
@@ -43,13 +44,14 @@ We use `ActiveSupport::TaggedLogging` for all logging. This allows us to add imp
 
 **All error messages are must be tagged with the class and method that raised the exception.** Here's an example:
 
-    :::ruby
-    class Geocoder
-      def geocode(location)
-        begin
-          # logic here...
-        rescue Exception => ex
-          Rails.logger.tagged("Geocoder", "geocode") { Rails.logger.error(ex) }
-        end
-      end
+```ruby
+class Geocoder
+  def geocode(location)
+    begin
+      # API invokation here...
+    rescue Exception => ex
+      Rails.logger.tagged("Geocoder", "geocode") { Rails.logger.error(ex) }
     end
+  end
+end
+```
