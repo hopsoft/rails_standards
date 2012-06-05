@@ -18,7 +18,7 @@ In an attempt to better isolate concerns, we loosely follow some domain driven d
 Namely, we have added a `services` directory under `app`.
 
 ```
-|-root
+|-project
   |-app
     |-assets
     |-controllers
@@ -42,9 +42,12 @@ Namely, we have added a `services` directory under `app`.
 
 We use `ActiveSupport::TaggedLogging` for all logging. This allows us to add implicit tags to each log message which supports better log parsing.
 
-**All error messages are must be tagged with the class and method that raised the exception.** Here's an example:
+**All error messages are must be tagged with the class and method that raised the exception.**
+
+Here's an example:
 
 ```ruby
+# /project/app/services/geocoder.rb
 class Geocoder
   def geocode(location)
     begin
