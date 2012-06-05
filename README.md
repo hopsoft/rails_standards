@@ -51,7 +51,7 @@ Here's an example:
 class Geocoder
   def geocode(location)
     begin
-      # API invokation here...
+      # API invocation here...
     rescue Exception => ex
       Rails.logger.tagged("Geocoder", "geocode") { Rails.logger.error(ex) }
     end
