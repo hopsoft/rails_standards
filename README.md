@@ -1,6 +1,6 @@
-## Rails 3.2 Standards & Conventions
+# Rails 3.2 Development Standards Guide
 
-### Approach
+## Approach
 
 **Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and [KISS](http://en.wikipedia.org/wiki/KISS_principle) principles to all of the following.**
 
@@ -8,11 +8,11 @@
 * Product and API features
 * Implementation specifics
 
-### Documentation
+## Documentation
 
 **All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.**
 
-### Services
+## Services
 
 In an attempt to better isolate concerns, we loosely follow some domain driven development (DDD) principles.
 Namely, we have added a `services` directory under `app`.
@@ -37,7 +37,7 @@ Namely, we have added a `services` directory under `app`.
 
 *NOTE: In a typical Rails application, this logic might be found in the model or controller.*
 
-### Logging
+## Logging
 
 We use `ActiveSupport::TaggedLogging` for all logging. This allows us to add implicit tags to each log message which supports better log parsing.
 
