@@ -110,6 +110,9 @@ String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Ker
 
 ```
 |-project
+  |-app
+  |-config
+  |-db
   |-lib
-    |-extensions
+    |-extensions <-----
 ```
