@@ -77,12 +77,12 @@ Here's an example:
 
 ```ruby
 # /project/app/services/geocoder.rb
-class Geocoder
-  def geocode(location)
+class MyObject
+  def foo
     begin
-      # API invocation here...
+      # logic here ...
     rescue Exception => ex
-      Rails.logger.tagged("Geocoder", "geocode") { Rails.logger.error(ex) }
+      Rails.logger.tagged("MyObject", "foo") { Rails.logger.error(ex) }
     end
   end
 end
@@ -104,4 +104,12 @@ module CowboyString
 end
 ::String.send(:include, CowboyString)
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
+```
+
+**All extensions should live under an `extensions` directory in `lib`.**
+
+```
+|-project
+  |-lib
+    |-extensions
 ```
