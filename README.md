@@ -116,3 +116,5 @@ String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Ker
   |-lib
     |-extensions <-----
 ```
+
+**Use an `initializer` to load extensions.**
