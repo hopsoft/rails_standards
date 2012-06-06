@@ -8,6 +8,13 @@
 * Product and API features
 * Implementation specifics
 
+## Files
+
+* Spaces not tabs
+* 2 spaces = tab
+* Unix line endings
+* UTF-8 encoding
+
 ## Documentation
 
 **All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.**
@@ -79,4 +86,22 @@ class Geocoder
     end
   end
 end
+```
+
+## Extensions & Monkey Patches
+
+**Use modules to extend objects or add monkey patches.**
+
+*This provides some introspection assistance when you need to track down weirdness.*
+
+Here's an example:
+
+```ruby
+module CowboyString
+  def downcase
+    self.upcase
+  end
+end
+::String.send(:include, CowboyString)
+String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
 ```
