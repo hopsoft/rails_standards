@@ -11,7 +11,7 @@
 ## Files
 
 * Spaces not tabs
-* 2 spaces = tab
+* tab = 2 spaces
 * Unix line endings
 * UTF-8 encoding
 
