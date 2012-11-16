@@ -41,6 +41,36 @@ end
 
 *NOTE: The comments listed above should exist in the file to serve as a visual reminder of the format.*
 
+### Model Implementation
+
+Its generally a good idea to isolate different concerns into separate modules.
+To accomplish this we have added a `model_mixins` directory under `app`.
+
+```
+|-project
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-model_mixins <-----
+    |-models
+    |-services
+    |-views
+```
+
+Each module should be prefixed with the model name when appropriate.
+
+#### Guidelines
+
+* Operations that are limited to a single model should be implemented in the model.
+  For example, a `full_name` method that concates `first_name` and `last_name`
+* Operations that reach beyond this model should be implemented in a mixin.
+  For example, a `status` method that needs to look at several other models to calculate.
+* Especially complex operations should be implemented as services. _See below._
+
+
+
 ## Services
 
 In an attempt to better isolate concerns, we loosely follow some domain driven development (DDD) principles.
