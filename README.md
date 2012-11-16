@@ -59,7 +59,7 @@ To accomplish this we have added a `model_mixins` directory under `app`.
     |-views
 ```
 
-Each module should be prefixed with the model name when appropriate.
+Each module should be prefixed with the model name when appropriate, followed by the name of the concern or behavior being implemented.
 
 #### Guidelines
 
