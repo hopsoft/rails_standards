@@ -61,7 +61,7 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 #### Guidelines
 
 * CRUD operations that are limited to a single model should be implemented in the model.
-  For example, a `full_name` method that concates `first_name` and `last_name`
+  For example, a `full_name` method that concats `first_name` and `last_name`
 * CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at several other models to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
