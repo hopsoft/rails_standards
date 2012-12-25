@@ -76,7 +76,7 @@ A process is defined as a **multi-step** operation which includes any of the fol
 * Any OS level interaction is performed.
 * Sending emails, exporting files, etc...
 
-In an attempt to better manage multi-step complex operations, we loosely follow some domain driven development (DDD) principles.
+In an attempt to better manage processes, we loosely follow some domain driven development (DDD) principles.
 Namely, we have added a `processes` directory under `app` to hold our process implementations.
 
 ```
