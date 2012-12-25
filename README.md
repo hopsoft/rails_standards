@@ -65,11 +65,11 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 * CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at several other models to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
-* Complex multi-step operations should be implemented as services. _See below._
+* Complex **multi-step** operations should be implemented as a process. _See below._
 
-## Services
+## Processes
 
-A service is defined as a **multi-step** operation which includes any of the following.
+A process is defined as a **multi-step** operation which includes any of the following.
 
 * A complex task oriented transaction is being performed.
 * A call is made to an external service.
@@ -77,7 +77,7 @@ A service is defined as a **multi-step** operation which includes any of the fol
 * Sending emails, exporting files, etc...
 
 In an attempt to better manage multi-step complex operations, we loosely follow some domain driven development (DDD) principles.
-Namely, we have added a `services` directory under `app` to hold the files that model our multi-step operations.
+Namely, we have added a `processes` directory under `app` to hold our process implementations.
 
 ```
 |-project
@@ -87,11 +87,13 @@ Namely, we have added a `services` directory under `app` to hold the files that 
     |-helpers
     |-mailers
     |-models
-    |-services <-----
+    |-processes <-----
     |-views
 ```
 
 We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help model these processes.
+
+**Important** *Do not use model or controller callbacks to invoke a process. Instead, invoke processes directly from the controller.*
 
 ## Logging
 
