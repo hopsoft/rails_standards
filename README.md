@@ -65,7 +65,7 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 * CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at several other models to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
-* Complex operations should be implemented as services. _See below._
+* Complex multi-step operations should be implemented as services. _See below._
 
 ## Services
 
