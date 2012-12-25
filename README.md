@@ -44,7 +44,7 @@ end
 ### Model Implementation
 
 Its generally a good idea to isolate different concerns into separate modules.
-To accomplish this we have added a `model_mixins` directory under `app`.
+We recommend using Concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns).
 
 ```
 |-project
@@ -53,28 +53,31 @@ To accomplish this we have added a `model_mixins` directory under `app`.
     |-controllers
     |-helpers
     |-mailers
-    |-model_mixins <-----
     |-models
-    |-services
+      |-concerns <-----
     |-views
 ```
 
-Each module should be prefixed with the model name when appropriate, followed by the name of the concern or behavior being implemented.
-
 #### Guidelines
 
-* Operations that are limited to a single model should be implemented in the model.
+* CRUD operations that are limited to a single model should be implemented in the model.
   For example, a `full_name` method that concates `first_name` and `last_name`
-* Operations that reach beyond this model should be implemented in a mixin.
+* CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at several other models to calculate.
-* Especially complex operations should be implemented as services. _See below._
-
-
+* Simple non-CRUD operations should be implemented as a Concern.
+* Complex operations should be implemented as services. _See below._
 
 ## Services
 
-In an attempt to better isolate concerns, we loosely follow some domain driven development (DDD) principles.
-Namely, we have added a `services` directory under `app`.
+A service is defined as a **multi-step** operation which includes any of the following.
+
+* A complex task oriented transaction is being performed.
+* A call is made to an external service.
+* Any OS level interaction is performed.
+* Sending emails, exporting files, etc...
+
+In an attempt to better manage multi-step complex operations, we loosely follow some domain driven development (DDD) principles.
+Namely, we have added a `services` directory under `app` to hold the files that model our multi-step operations.
 
 ```
 |-project
@@ -88,14 +91,7 @@ Namely, we have added a `services` directory under `app`.
     |-views
 ```
 
-**All use cases that meet the following criteria must be organized as service objects under the `services` directory.**
-
-* A complex task oriented transaction is being performed.
-* A call is made to an external service.
-* Any OS level interaction is performed.
-* Sending email, exporting files, etc...
-
-*NOTE: In a typical Rails application, this logic might be found in the model or controller.*
+We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help model these processes.
 
 ## Logging
 
