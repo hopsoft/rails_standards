@@ -21,6 +21,8 @@
 
 ## Models
 
+Never use dynamic finders. e.g. `find_by_...`
+
 **All models should be organized using the following format.**
 
 ```ruby
