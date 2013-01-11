@@ -28,12 +28,12 @@ It's expected that you will break these rules for pragmatic reasons... **alot**.
 They are purposefully aggressive and are designed to give you pause so your app won't run amok.
 
 * Classes can be no longer than 100 lines of code. 
-* Methods can be no longer than five lines of code.
+* Methods can be no longer than 5 lines of code.
 * Methods can take a maximum of 4 parameters.
-* Controllers should only instantiate one object.
+* Controllers should only instantiate 1 object.
 * Views should only have access to 1 instance variable.
 * Never directly reference another class/module from within a class. 
-  Such references should always be passed.
+  *Such references should always be passed in*.
 
 ## Models
 
