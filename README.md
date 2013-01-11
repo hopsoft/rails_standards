@@ -25,9 +25,9 @@ All classes, modules, and methods must be documented using [YARD](http://yardoc.
 These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
-It's expected that you will break these rules for pragmatic reasons... **alot**.
-*See the YAGNI and KISS notes above.*
-They are purposefully aggressive and are designed to give you pause so your app won't run amok.
+These rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
+It's expected that you will break them for pragmatic reasons... **alot**.
+*See the note on [YAGNI and KISS](#approach).*
 
 * Classes can be no longer than 100 lines of code. 
 * Methods can be no longer than 5 lines of code.
