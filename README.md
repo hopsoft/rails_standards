@@ -21,10 +21,11 @@
 
 ## General Guidelines
 
-These guidelines are based on Sandy Metz's programming "rules" that she introduced on 
+These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
+
 Its expected that you will break these rules for pragmatic reasons... alot.
-They are purposefully aggressive to help prevent your app from runing amok.
+They are purposefully aggressive and are designed to give you pause so your app won't run amok.
 
 * Classes can be no longer than 100 lines of code. 
 * Methods can be no longer than five lines of code.
