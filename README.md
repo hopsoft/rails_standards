@@ -2,7 +2,8 @@
 
 ## Approach
 
-**Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and [KISS](http://en.wikipedia.org/wiki/KISS_principle) principles to all of the following.**
+Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and 
+[KISS](http://en.wikipedia.org/wiki/KISS_principle) principles to all of the following.
 
 * General architecture
 * Product and API features
@@ -25,6 +26,7 @@ These guidelines are based on Sandy Metz's programming "rules" which she introdu
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
 It's expected that you will break these rules for pragmatic reasons... **alot**.
+*See the YAGNI and KISS notes above.*
 They are purposefully aggressive and are designed to give you pause so your app won't run amok.
 
 * Classes can be no longer than 100 lines of code. 
