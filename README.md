@@ -25,7 +25,7 @@ All classes, modules, and methods must be documented using [YARD](http://yardoc.
 These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
-These rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
+The rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
 It's expected that you will break them for pragmatic reasons... **alot**.
 *See the note on [YAGNI and KISS](#approach).*
 
