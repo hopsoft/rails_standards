@@ -120,24 +120,35 @@ We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help m
 
 ## Logging
 
-We use `ActiveSupport::TaggedLogging` for all logging. This allows us to add implicit tags to each log message which supports better log parsing.
-
-**All error messages are must be tagged with the class and method that raised the exception.**
-
-Here's an example:
+We use the [Yell gem](https://github.com/rudionrails/yell) for logging. 
+Here is an example configuration.
 
 ```ruby
-# /project/app/services/geocoder.rb
-class MyObject
-  def foo
-    begin
-      # logic here ...
-    rescue Exception => ex
-      Rails.logger.tagged("MyObject", "foo") { Rails.logger.error(ex) }
+# example/config/application.rb 
+module Example
+  class Application < Rails::Application
+    log_levels = [:debug, :info, :warn, :error, :fatal]
+    
+    # %m : The message to be logged
+    # %d : The ISO8601 Timestamp
+    # %L : The log level, e.g INFO, WARN
+    # %l : The log level (short), e.g. I, W
+    # %p : The PID of the process from where the log event occured
+    # %t : The Thread ID from where the log event occured
+    # %h : The hostname of the machine from where the log event occured
+    # %f : The filename from where the log event occured
+    # %n : The line number of the file from where the log event occured
+    # %F : The filename with path from where the log event occured
+    # %M : The method where the log event occured
+    log_format = Yell.format( "[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m")
+
+    config.logger = Yell.new do |logger|
+      logger.adapter STDOUT, :level => log_levels, :format => log_format 
     end
   end
 end
 ```
+
 
 ## Extensions & Monkey Patches
 
