@@ -33,7 +33,7 @@ They are purposefully aggressive and are designed to give you pause so your app 
 * Controllers should only instantiate one object.
 * Views should only have access to 1 instance variable.
 * Never directly reference another class/module from within a class. 
-  Such references should always be passed in.
+  Such references should always be passed.
 
 ## Models
 
