@@ -17,14 +17,14 @@
 
 ## Documentation
 
-**All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.**
+All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.
 
 ## General Guidelines
 
 These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
-Its expected that you will break these rules for pragmatic reasons... alot.
+It's expected that you will break these rules for pragmatic reasons... alot.
 They are purposefully aggressive and are designed to give you pause so your app won't run amok.
 
 * Classes can be no longer than 100 lines of code. 
