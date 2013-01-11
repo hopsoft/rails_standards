@@ -19,6 +19,21 @@
 
 **All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.**
 
+## General Guidelines
+
+These guidelines are based on Sandy Metz's programming "rules" that she introduced on 
+[Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
+Its expected that you will break these rules for pragmatic reasons... alot.
+They are purposefully aggressive to help prevent your app from runing amok.
+
+* Classes can be no longer than 100 lines of code. 
+* Methods can be no longer than five lines of code.
+* Methods can take a maximum of 4 parameters.
+* Controllers should only instantiate one object.
+* Views should only have access to 1 instance variable.
+* Never directly reference another class/module from within a class. 
+  Such references should always be passed in.
+
 ## Models
 
 Never use dynamic finders. e.g. `find_by_...`
