@@ -156,7 +156,18 @@ end
 ## Extensions & Monkey Patches
 
 * Be thoughtful about monkey patching and look for alternative solutions first.
-* Use an `initializer` to load extensions.
+* Use an `initializer` to load extensions & monkey patches.
+
+All extensions & monkey patches should live under an `extensions` directory in `lib`.
+
+```
+|-project
+  |-app
+  |-config
+  |-db
+  |-lib
+    |-extensions <-----
+```
 
 Use modules to extend objects or add monkey patches.
 *This provides some introspection assistance when you need to track down weirdness.*
@@ -171,16 +182,5 @@ module CowboyString
 end
 ::String.send(:include, CowboyString)
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
-```
-
-All extensions should live under an `extensions` directory in `lib`.
-
-```
-|-project
-  |-app
-  |-config
-  |-db
-  |-lib
-    |-extensions <-----
 ```
 
