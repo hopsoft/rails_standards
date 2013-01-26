@@ -39,7 +39,8 @@ It's expected that you will break them for pragmatic reasons... **alot**.
 
 ## Models
 
-Never use dynamic finders. e.g. `find_by_...`
+* Never use dynamic finders. e.g. `find_by_...`
+* Be thoughtful about using callbacks. They can lead to unwanted coupling.
 
 **All models should be organized using the following format.**
 
@@ -154,8 +155,10 @@ end
 
 ## Extensions & Monkey Patches
 
-**Use modules to extend objects or add monkey patches.**
+* Be thoughtful about monkey patching and look for alternative solutions first.
+* Use an `initializer` to load extensions.
 
+Use modules to extend objects or add monkey patches.
 *This provides some introspection assistance when you need to track down weirdness.*
 
 Here's an example:
@@ -170,7 +173,7 @@ end
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
 ```
 
-**All extensions should live under an `extensions` directory in `lib`.**
+All extensions should live under an `extensions` directory in `lib`.
 
 ```
 |-project
@@ -181,4 +184,3 @@ String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Ker
     |-extensions <-----
 ```
 
-**Use an `initializer` to load extensions.**
