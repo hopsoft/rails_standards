@@ -214,3 +214,27 @@ end
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
 ```
 
+## A Note on Client Side Frameworks
+
+Exciting things are happening in world of client side frameworks.
+
+* [Backbone](http://backbonejs.org/)
+* [Ember](http://emberjs.com/)
+* [Angular](http://angularjs.org/)
+* [Knockout](http://knockoutjs.com/)
+* and many others...
+
+**Be thoughtful about the decision to use a client side framework.**
+Ask yourself if the complexity of maintaining 2 independent full stacks is the right decision.
+Often times there are better and simpler solutions.
+
+Read the following articles before deciding.
+In the end, you should be able to articulate why your decision is the right one.
+
+* [How Basecamp Next got to be so damn fast without using much client-side UI](http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui)
+* [Rails in Realtime](http://layervault.tumblr.com/post/30932219739/rails-in-realtime)
+* [Rails in Realtime, Part 2](http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2)
+
+
+
+
