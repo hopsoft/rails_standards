@@ -114,11 +114,7 @@ class ExampleController < ActionController::Base
   protected
 
   def sanitized_params
-    @sanitized_params ||= begin
-      sanitized = params.slice(:id, :expected_param, :another_expected_param)
-      # more sanitization logic if needed
-      sanitized
-    end
+    params.slice(:id, :expected_param, :another_expected_param)
   end
 end
 ```
