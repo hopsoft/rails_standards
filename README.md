@@ -108,13 +108,13 @@ class ExampleController < ActionController::Base
   end
   
   def update
-    Example.find(sanitized_params[:id]).update_attributes!(sanitized_params)
+    Example.find(params[:id]).update_attributes!(sanitized_params)
   end
  
   protected
 
   def sanitized_params
-    params.slice(:id, :expected_param, :another_expected_param)
+    params.slice[:example](:expected_param, :another_expected_param)
   end
 end
 ```
