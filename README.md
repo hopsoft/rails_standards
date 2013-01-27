@@ -40,7 +40,8 @@ It's expected that you will break them for pragmatic reasons... **alot**.
 ## Models
 
 * Never use dynamic finders. e.g. `find_by_...`
-* Be thoughtful about using callbacks. They can lead to unwanted coupling.
+* Be thoughtful about using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html) 
+and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they can lead to unwanted coupling.
 
 **All models should be organized using the following format.**
 
@@ -92,6 +93,33 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
   It's unacceptable for a concern to invoke methods defined in other concerns; however, 
   invoking methods defined in the intended receiver is permissible.
 * Complex **multi-step** operations should be implemented as a process. _See below._
+
+## Controllers
+
+Controllers should sanitize params before performing any other logic.
+The preferred solution is inspired by this [gist from DHH](https://gist.github.com/1975644).
+
+```
+class ExampleController < ActionController::Base
+  def create
+    Example.create(sanitized_params)
+  end
+  
+  def update
+    Example.find(sanitized_params[:id]).update_attributes!(sanitized_params)
+  end
+ 
+  protected
+
+  def sanitized_params
+    @sanitized_params ||= begin
+      sanitized = params.slice(:id, :expected_param, :another_expected_param)
+      # more sanitization logic if needed
+      sanitized
+    end
+  end
+end
+```
 
 ## Processes
 
