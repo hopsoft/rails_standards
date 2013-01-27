@@ -22,7 +22,7 @@ All classes, modules, and methods must be documented using [YARD](http://yardoc.
 
 ## General Guidelines
 
-These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
+These guidelines are based on [Sandi Metz's](http://sandimetz.com/) programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
 The rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
@@ -36,6 +36,9 @@ It's expected that you will break them for pragmatic reasons... **alot**.
 * Views should only have access to 1 instance variable.
 * Never directly reference another class/module from within a class. 
   *Such references should be passed in*.
+
+*Be thoughtful when applying these rules. 
+If you find yourself fighting the framework, its time to be a little more pragmatic.*
 
 ## Models
 
