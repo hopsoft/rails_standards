@@ -99,7 +99,7 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 Controllers should sanitize params before performing any other logic.
 The preferred solution is inspired by this [gist from DHH](https://gist.github.com/1975644).
 
-```
+```ruby
 class ExampleController < ActionController::Base
   def create
     Example.create(sanitized_params)
