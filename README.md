@@ -99,6 +99,8 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 Controllers should sanitize params before performing any other logic.
 The preferred solution is inspired by this [gist from DHH](https://gist.github.com/1975644).
 
+Here's an example of param sanitization.
+
 ```ruby
 class ExampleController < ActionController::Base
   def create
@@ -152,7 +154,7 @@ We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help m
 ## Logging
 
 We use the [Yell gem](https://github.com/rudionrails/yell) for logging. 
-Here is an example configuration.
+Here's an example configuration.
 
 ```ruby
 # example/config/application.rb 
