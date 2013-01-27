@@ -38,7 +38,7 @@ It's expected that you will break them for pragmatic reasons... **alot**.
   *Such references should be passed in*.
 
 *Be thoughtful when applying these rules. 
-If you find yourself fighting the framework, its time to be a little more pragmatic.*
+If you find yourself fighting the framework, it's time to be a little more pragmatic.*
 
 ## Models
 
