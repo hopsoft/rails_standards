@@ -213,6 +213,24 @@ end
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
 ```
 
+## Gem Dependencies
+
+Gem dependencies should be hardened before deploying the application to production.
+This will ensure application stability.
+
+We recommend using [exact or tilde version specifiers](http://gembundler.com/v1.2/gemfile.html).
+Here's an example.
+
+```ruby
+# Gemfile
+gem 'rails', '3.2.11' # GOOD: exact specifier
+gem 'pg', '~>0.9'     # GOOD: tilde specifier
+gem 'nokogiri'        # BAD: no version specifier
+```
+
+*Bundler's Gemfile.lock solves the same problem; however, our team discovered that inadvertent `bundle update`s were causing dependency problems.
+It's much better to be explicit in the Gemfile and guarantee application stability.*
+
 ## A Note on Client Side Frameworks
 
 Exciting things are happening in the world of client side frameworks.
