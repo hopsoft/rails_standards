@@ -215,7 +215,7 @@ String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Ker
 
 ## A Note on Client Side Frameworks
 
-Exciting things are happening in world of client side frameworks.
+Exciting things are happening in the world of client side frameworks.
 
 * [Backbone](http://backbonejs.org/)
 * [Ember](http://emberjs.com/)
