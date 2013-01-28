@@ -2,7 +2,7 @@
 
 ## Approach
 
-Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and 
+Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 [KISS](http://en.wikipedia.org/wiki/KISS_principle) principles to all of the following.
 
 * General architecture
@@ -22,28 +22,28 @@ All classes, modules, and methods must be documented using [YARD](http://yardoc.
 
 ## General Guidelines
 
-These guidelines are based on [Sandi Metz's](http://sandimetz.com/) programming "rules" which she introduced on 
+These guidelines are based on [Sandi Metz's](http://sandimetz.com/) programming "rules" which she introduced on
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
 The rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
 It's expected that you will break them for pragmatic reasons... **alot**.
 *See the note on [YAGNI and KISS](#approach).*
 
-* Classes can be no longer than 100 lines of code. 
+* Classes can be no longer than 100 lines of code.
 * Methods can be no longer than 5 lines of code.
 * Methods can take a maximum of 4 parameters.
 * Controllers should only instantiate 1 object.
 * Views should only have access to 1 instance variable.
-* Never directly reference another class/module from within a class. 
+* Never directly reference another class/module from within a class.
   *Such references should be passed in*.
 
-*Be thoughtful when applying these rules. 
+*Be thoughtful when applying these rules.
 If you find yourself fighting the framework, its time to be a little more pragmatic.*
 
 ## Models
 
 * Never use dynamic finders. e.g. `find_by_...`
-* Be thoughtful about using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html) 
+* Be thoughtful about using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)
 and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they can lead to unwanted coupling.
 
 **All models should be organized using the following format.**
@@ -91,9 +91,9 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 * CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at several other models to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
-* **Important!** Concerns should be isolated and self contained. 
+* **Important!** Concerns should be isolated and self contained.
   They should NOT make assumptions about how the receiver is composed at runtime.
-  It's unacceptable for a concern to invoke methods defined in other concerns; however, 
+  It's unacceptable for a concern to invoke methods defined in other concerns; however,
   invoking methods defined in the intended receiver is permissible.
 * Complex **multi-step** operations should be implemented as a process. _See below._
 
@@ -109,15 +109,15 @@ class ExampleController < ActionController::Base
   def create
     Example.create(sanitized_params)
   end
-  
+
   def update
     Example.find(params[:id]).update_attributes!(sanitized_params)
   end
- 
+
   protected
 
   def sanitized_params
-    params.slice[:example](:expected_param, :another_expected_param)
+    params[:example].slice(:expected_param, :another_expected_param)
   end
 end
 ```
@@ -152,15 +152,15 @@ We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help m
 
 ## Logging
 
-We use the [Yell gem](https://github.com/rudionrails/yell) for logging. 
+We use the [Yell gem](https://github.com/rudionrails/yell) for logging.
 Here's an example configuration.
 
 ```ruby
-# example/config/application.rb 
+# example/config/application.rb
 module Example
   class Application < Rails::Application
     log_levels = [:debug, :info, :warn, :error, :fatal]
-    
+
     # %m : The message to be logged
     # %d : The ISO8601 Timestamp
     # %L : The log level, e.g INFO, WARN
@@ -175,7 +175,7 @@ module Example
     log_format = Yell.format( "[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m")
 
     config.logger = Yell.new do |logger|
-      logger.adapter STDOUT, :level => log_levels, :format => log_format 
+      logger.adapter STDOUT, :level => log_levels, :format => log_format
     end
   end
 end
