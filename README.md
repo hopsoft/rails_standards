@@ -234,6 +234,6 @@ In the end, you should be able to articulate why your decision is the right one.
 * [Rails in Realtime](http://layervault.tumblr.com/post/30932219739/rails-in-realtime)
 * [Rails in Realtime, Part 2](http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2)
 
-*Choosing not to use a client side framework can help mitigate "layout thrashing"
+*In either case be mindful of "layout thrashing"
 as [described here](http://kellegous.com/j/2013/01/26/layout-performance/).*
 
