@@ -219,13 +219,15 @@ Gem dependencies should be hardened before deploying the application to producti
 This will ensure application stability.
 
 We recommend using [exact or tilde version specifiers](http://gembundler.com/v1.2/gemfile.html).
+When using tilde specifiers, be sure to include at least the major &amp; minor numbers.
 Here's an example.
 
 ```ruby
 # Gemfile
-gem 'rails', '3.2.11' # GOOD: exact specifier
-gem 'pg', '~>0.9'     # GOOD: tilde specifier
-gem 'nokogiri'        # BAD: no version specifier
+gem 'rails', '3.2.11' # GOOD: exact
+gem 'pg', '~>0.9'     # GOOD: tilde
+gem 'yell', '>=1.2'   # BAD: unspecific
+gem 'nokogiri'        # BAD: unversioned
 ```
 
 *Bundler's Gemfile.lock solves the same problem; however, our team discovered that inadvertent `bundle update`s were causing dependency problems.
@@ -234,6 +236,7 @@ It's much better to be explicit in the Gemfile and guarantee application stabili
 This will cause your project to slowy drift away from the bleeding edge.
 A strategy should be employed to ensure your project doesn't drift too far from contemporary gem versions.
 For example, we are vigilant about security patch upgrades and we periodically upgrade gems on a regular basis.
+Services like [Gemnasium](https://gemnasium.com/) can help with this.
 
 ## A Note on Client Side Frameworks
 
