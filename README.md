@@ -19,7 +19,7 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 ## Documentation
 
 Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
-Avoid in method comments as they are cue that the method is too complex; refactor instead.
+Avoid in method comments as they are a cue that the method is too complex; refactor instead.
 
 ## General Guidelines
 
