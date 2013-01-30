@@ -18,11 +18,11 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 
 ## Documentation
 
-Make an effort for code to be "self documenting".
-Prefer descriptive names in your code. e.g. `user_count` is a better name than `len`.
+Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Self-documenting).
 
-Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
-Avoid in method comments as they are a cue that the method is too complex; refactor instead.
+* Prefer descriptive names in your code. e.g. `user_count` is a better name than `len`.
+* Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
+* Avoid in method comments as they are a cue that the method is too complex; refactor instead.
 
 ## General Guidelines
 
