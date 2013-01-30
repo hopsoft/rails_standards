@@ -18,7 +18,8 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 
 ## Documentation
 
-All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.
+Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
+Avoid in method comments as they are cue that the method is too complex.
 
 ## General Guidelines
 
