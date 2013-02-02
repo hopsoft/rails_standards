@@ -234,12 +234,12 @@ gem 'yell', '>=1.2'   # BAD: unspecific
 gem 'nokogiri'        # BAD: unversioned
 ```
 
-*Bundler's Gemfile.lock solves the same problem; however, our team discovered that inadvertent `bundle update`s were causing dependency problems.
-It's much better to be explicit in the Gemfile and guarantee application stability.*
+Bundler's Gemfile.lock solves the same problem, but we discovered that inadvertent `bundle updates` can cause problems.
+It's much better to be explicit in the Gemfile and guarantee app stability.
 
-This will cause your project to slowy drift away from the bleeding edge.
-A strategy should be employed to ensure your project doesn't drift too far from contemporary gem versions.
-For example, we are vigilant about security patch upgrades and we periodically upgrade gems on a regular basis.
+**This will cause your project to slowy drift away from the bleeding edge.**
+A strategy should be employed to ensure the project doesn't drift too far from contemporary gem versions.
+For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
 Services like [Gemnasium](https://gemnasium.com/) can help with this.
 
 ## A Note on Client Side Frameworks
