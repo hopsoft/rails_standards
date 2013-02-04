@@ -37,18 +37,26 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 
 ## 文档
 
-All classes, modules, and methods must be documented using [YARD](http://yardoc.org/) formatted comments.
+Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Self-documenting).
 
-必须使用基于[YARD](http://yardoc.org/)的注释格式来文档化所有的类、模块和方法。
+* Prefer descriptive names in your code. e.g. `user_count` is a better name than `len`.
+* Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
+* Avoid in method comments as they are a cue that the method is too complex; refactor instead.
+
+尽量做到代码的[自我解释](http://en.wikipedia.org/wiki/Self-documenting)。
+
+* 优先使用具有描述性的名称。比如:`user_count` 就要优于 `len`。
+* 如果确实需要文档化，请使用基于[YARD](http://yardoc.org/)的注释格式。
+* 请避免因为方法太过复杂，而需要用注释进行提示的情况。如果有，请重构它。
 
 ## General Guidelines
 
 ## 一般准则
 
-These guidelines are based on Sandy Metz's programming "rules" which she introduced on 
+These guidelines are based on [Sandi Metz's](http://sandimetz.com/) programming "rules" which she introduced on 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
-以下的准则均基于Sandy Metz在 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/) 上所介绍的编程“规则”.
+以下的准则均基于[Sandi Metz's](http://sandimetz.com/)在 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/) 上所介绍的编程“规则”.
 
 The rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
 It's expected that you will break them for pragmatic reasons... **alot**.
@@ -72,15 +80,20 @@ It's expected that you will break them for pragmatic reasons... **alot**.
 * 视图应该只获取一个实例变量
 * 永远不要直接在类中直接引用其他的类或者模块 *而应该传递这些引用*
 
+*Be thoughtful when applying these rules.
+If you find yourself fighting the framework, it's time to be a little more pragmatic.*
+
+*请谨慎的实践以上的规则。如果发现自己过于纠结于代码的结构，也许就是该务实的时候了。*
+
 ## Models
 
 ## 模型
 
 * Never use dynamic finders. e.g. `find_by_...`
-* Be thoughtful about using callbacks. They can lead to unwanted coupling.
+* Be thoughtful about using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html) and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they can lead to unwanted coupling.
 
 * 永远不要使用动态的查找方法。 例如：`find_by_...`
-* 仔细斟酌对回调的使用。他们会导致不必要的耦合。
+* 仔细斟酌对[回调](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)和[观察者](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html)的使用。他们会导致不必要的耦合。
 
 **All models should be organized using the following format.**
 
@@ -149,6 +162,37 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
 * 简单的非CRUD操作应该作为一个关注点实现。
 * **非常重要！** 关注点应该独立而且自包含。他们**不**应该假设接收者在运行时是如何组成的。一个关注去调用其他关注中的方法是不被接受的。然而，调用定义在预定接收者中的方法是允许的。
 * 复杂的 **多步** 操作应该作为过程实现。_见下文_
+
+## Controllers
+
+## 控制器
+
+Controllers should sanitize params before performing any other logic.
+The preferred solution is inspired by [this gist from DHH](https://gist.github.com/1975644).
+
+Here's an example of param sanitization.
+
+实现其他逻辑前，请先对参数进行清理。首选的解决方案灵感来自[DHH的这段gist](https://gist.github.com/1975644)。
+下面是一段参数清理的示例。
+
+
+```ruby
+class ExampleController < ActionController::Base
+  def create
+    Example.create(sanitized_params)
+  end
+
+  def update
+    Example.find(params[:id]).update_attributes!(sanitized_params)
+  end
+
+  protected
+
+  def sanitized_params
+    params[:example].slice(:expected_param, :another_expected_param)
+  end
+end
+```
 
 ## Processes
 
@@ -281,29 +325,33 @@ This will ensure application stability.
 应用所依赖的Gem版本在发布到生产环境的时候，必须固定。这样可以保证应用的可靠性。
 
 We recommend using [exact or tilde version specifiers](http://gembundler.com/v1.2/gemfile.html).
+When using tilde specifiers, be sure to include at least the major &amp; minor numbers.
 Here's an example.
 
-我们推荐使用[精确或波浪线版本的说明符](http://gembundler.com/v1.2/gemfile.html)。下面是一个例子。
+我们推荐使用[精确或波浪线版本的说明符](http://gembundler.com/v1.2/gemfile.html)。当使用波浪线说明符时，请确保至少包含了主要和次级版本数字。下面是一个例子。
 
 ```ruby
 # Gemfile
-gem 'rails', '3.2.11' # GOOD: exact specifier
-gem 'pg', '~>0.9'     # GOOD: tilde specifier
-gem 'nokogiri'        # BAD: no version specifier
+gem 'rails', '3.2.11' # GOOD: exact
+gem 'pg', '~>0.9'     # GOOD: tilde
+gem 'yell', '>=1.2'   # BAD: unspecific
+gem 'nokogiri'        # BAD: unversioned
 ```
 
-*Bundler's Gemfile.lock solves the same problem; however, our team discovered that inadvertent `bundle update`s were causing dependency problems.
-It's much better to be explicit in the Gemfile and guarantee application stability.*
+Bundler's Gemfile.lock solves the same problem; but we discovered that inadvertent `bundle update`s were causing problems.
+It's much better to be explicit in the Gemfile and guarantee application stability.
 
-*Bundler所使用的Gemfile.lock文件也可以用来解决这个问题；但是，我们的小组发现如果不小心使用了`bundle update` 同样会导致依赖性问题。因此，为了保证应用的可靠性，在Gemfile中进行精确的定义还是最好的办法。
+*Bundler所使用的Gemfile.lock文件也可以用来解决这个问题；但是，我们发现无意的`bundle update` 同样会导致问题。因此，为了保证应用的可靠性，在Gemfile中进行精确的定义还是最好的办法。
 
-This will cause your project to slowy drift away from the bleeding edge.
+**This will cause your project to slowy drift away from the bleeding edge.**
 A strategy should be employed to ensure your project doesn't drift too far from contemporary gem versions.
-For example, we are vigilant about security patch upgrades and we periodically upgrade gems on a regular basis.
+For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
+Services like [Gemnasium](https://gemnasium.com/) can help with this.
 
 但是这可能会导致你的项目逐渐偏离前沿版本。
 你必须采取一定的策略才能保证你不会偏得太远。
-比如我们对安全补丁的升级保持关注，并周期性的进行常规升级。
+比如，周期性*（每3-4个月）*的对gems进行升级，并对安全补丁保持高度警惕。
+类似[Gemnasium](https://gemnasium.com/)的服务在这方面会给予帮助。
 
 ## A Note on Client Side Frameworks
 
