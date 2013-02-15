@@ -240,7 +240,7 @@ It's much better to be explicit in the Gemfile and guarantee app stability.
 **This will cause your project to slowy drift away from the bleeding edge.**
 A strategy should be employed to ensure the project doesn't drift too far from contemporary gem versions.
 For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
-Services like [Gemnasium](https://gemnasium.com/) can help with this.
+Using `bundle outdated` will help with this.
 
 ## A Note on Client Side Frameworks
 
