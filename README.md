@@ -242,6 +242,18 @@ A strategy should be employed to ensure the project doesn't drift too far from c
 For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
 Using `bundle outdated` will help with this.
 
+## Planning for Growth
+
+As your project grows in size & complexity it's critical that you organize your code for optimal maintainability.
+
+Stephan Hagemann presented several strategies, at
+[Mountain West RubyConf](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
+that will help keep your Rails projects organized with well separated concerns.
+The accompanying code can be [viewed here](https://github.com/shageman/the_next_big_thing).
+
+You should be applying some of these strategies in all of your Rails projects.
+Be sure to use judgement and remember that premature optimization often risks momentum and eventual delivery.
+
 ## A Note on Client Side Frameworks
 
 Exciting things are happening in the world of client side frameworks.
