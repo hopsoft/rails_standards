@@ -22,7 +22,8 @@ Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Se
 
 * Prefer descriptive names in your code. e.g. `user_count` is a better name than `len`.
 * Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
-* Avoid in method comments as they are a cue that the method is too complex; refactor instead.
+* Avoid in method comments as they are a cue that the method is too complex.
+Refactor into additional classes/methods that express intent & purpose.
 
 ## General Guidelines
 
@@ -30,8 +31,8 @@ These guidelines are based on [Sandi Metz's](http://sandimetz.com/) programming 
 [Ruby Rogues](http://rubyrogues.com/087-rr-book-clubpractical-object-oriented-design-in-ruby-with-sandi-metz/).
 
 The rules are purposefully aggressive and are designed to give you pause so your app won't run amok.
-It's expected that you will break them for pragmatic reasons... **alot**.
-*See the note on [YAGNI and KISS](#approach).*
+It's expected that you will break them for pragmatic reasons...
+just be sure that you aware of the trade-offs.
 
 * Classes can be no longer than 100 lines of code.
 * Methods can be no longer than 5 lines of code.
@@ -42,13 +43,21 @@ It's expected that you will break them for pragmatic reasons... **alot**.
   *Such references should be passed in*.
 
 *Be thoughtful when applying these rules.
-If you find yourself fighting the framework, it's time to be a little more pragmatic.*
+If you find yourself fighting Rails too often, a more pragmatic approach might be warranted.*
+
+## Project Structure
+
+Ruby & Rails both ship with the tools needed to create well organized projects;
+namely, keeping concerns physically isolated.
+Applying the right strategies will ensure that your project is testable and maintainable well into the future.
+
+More coming soon...
 
 ## Models
 
 * Never use dynamic finders. e.g. `find_by_...`
-* Be thoughtful about using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)
-and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they can lead to unwanted coupling.
+* Apply extreme caution when using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)
+and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they typically lead to unwanted coupling.
 
 **All models should be organized using the following format.**
 
@@ -56,12 +65,11 @@ and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) a
 class MyModel < ActiveRecord::Base
   # extends ...................................................................
   # includes ..................................................................
-  # security (i.e. attr_accessible) ...........................................
   # relationships .............................................................
   # validations ...............................................................
   # callbacks .................................................................
   # scopes ....................................................................
-  # additional config .........................................................
+  # additional config (i.e. accepts_nested_attribute_for etc...) ..............
   # class methods .............................................................
   # public instance methods ...................................................
   # protected instance methods ................................................
@@ -74,7 +82,7 @@ end
 ### Model Implementation
 
 Its generally a good idea to isolate different concerns into separate modules.
-We recommend using Concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns).
+Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns).
 
 ```
 |-project
@@ -88,103 +96,22 @@ We recommend using Concerns as outlined in [this blog post](http://37signals.com
     |-views
 ```
 
-#### Guidelines
+#### Concerns Guide
 
 * CRUD operations that are limited to a single model should be implemented in the model.
   For example, a `full_name` method that concats `first_name` and `last_name`
 * CRUD operations that reach beyond this model should be implemented as a Concern.
-  For example, a `status` method that needs to look at several other models to calculate.
+  For example, a `status` method that needs to look at a different model to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
 * **Important!** Concerns should be isolated and self contained.
   They should NOT make assumptions about how the receiver is composed at runtime.
   It's unacceptable for a concern to invoke methods defined in other concerns; however,
   invoking methods defined in the intended receiver is permissible.
-* Complex **multi-step** operations should be implemented as a process. _See below._
 
 ## Controllers
 
-Controllers should sanitize params before performing any other logic.
-The preferred solution is inspired by [this gist from DHH](https://gist.github.com/1975644).
-
-Here's an example of param sanitization.
-
-```ruby
-class ExampleController < ActionController::Base
-  def create
-    Example.create(sanitized_params)
-  end
-
-  def update
-    Example.find(params[:id]).update_attributes!(sanitized_params)
-  end
-
-  protected
-
-  def sanitized_params
-    params[:example].slice(:expected_param, :another_expected_param)
-  end
-end
-```
-
-## Processes
-
-A process is defined as a **multi-step** operation which includes any of the following.
-
-* A complex task oriented transaction is being performed.
-* A call is made to an external service.
-* Any OS level interaction is performed.
-* Sending emails, exporting files, etc...
-
-In an attempt to better manage processes, we loosely follow some domain driven development (DDD) principles.
-Namely, we have added a `processes` directory under `app` to hold our process implementations.
-
-```
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-    |-processes <-----
-    |-views
-```
-
-We recommend using a tool like [Hero](https://github.com/hopsoft/hero) to help model these processes.
-
-**Important** *Do not use model or controller callbacks to invoke a process. Instead, invoke processes directly from the controller.*
-
-## Logging
-
-We use the [Yell gem](https://github.com/rudionrails/yell) for logging.
-Here's an example configuration.
-
-```ruby
-# example/config/application.rb
-module Example
-  class Application < Rails::Application
-    log_levels = [:debug, :info, :warn, :error, :fatal]
-
-    # %m : The message to be logged
-    # %d : The ISO8601 Timestamp
-    # %L : The log level, e.g INFO, WARN
-    # %l : The log level (short), e.g. I, W
-    # %p : The PID of the process from where the log event occured
-    # %t : The Thread ID from where the log event occured
-    # %h : The hostname of the machine from where the log event occured
-    # %f : The filename from where the log event occured
-    # %n : The line number of the file from where the log event occured
-    # %F : The filename with path from where the log event occured
-    # %M : The method where the log event occured
-    log_format = Yell.format( "[%d] [%L] [%h][%p][%t] [%F:%n:%M] %m")
-
-    config.logger = Yell.new do |logger|
-      logger.adapter STDOUT, :level => log_levels, :format => log_format
-    end
-  end
-end
-```
-
+Controllers should use [strong parameters](http://api.rubyonrails.org/classes/ActionController/StrongParameters.html)
+to sanitize params before performing any other logic.
 
 ## Extensions & Monkey Patches
 
@@ -223,7 +150,7 @@ Gem dependencies should be hardened before deploying the application to producti
 This will ensure application stability.
 
 We recommend using [exact or tilde version specifiers](http://gembundler.com/v1.2/gemfile.html).
-When using tilde specifiers, be sure to include at least the major &amp; minor numbers.
+When using tilde specifiers, be sure to include at least the major & minor numbers.
 Here's an example.
 
 ```ruby
@@ -242,25 +169,13 @@ A strategy should be employed to ensure the project doesn't drift too far from c
 For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
 Using `bundle outdated` will help with this.
 
-## Planning for Growth
-
-As your project grows in size & complexity, it's critical that you organize your code for optimal maintainability.
-
-Stephan Hagemann presented several strategies, at
-[Mountain West RubyConf](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
-that will help keep your Rails projects organized with well separated concerns.
-*The accompanying code can be [viewed here](https://github.com/shageman/the_next_big_thing).*
-
-You should be applying some of these strategies in all of your Rails projects.
-Be sure to use judgement and remember that premature optimization often risks momentum and eventual delivery.
-
 ## A Note on Client Side Frameworks
 
 Exciting things are happening in the world of client side frameworks.
 
-* [Backbone](http://backbonejs.org/)
 * [Ember](http://emberjs.com/)
 * [Angular](http://angularjs.org/)
+* [Backbone](http://backbonejs.org/)
 * [Knockout](http://knockoutjs.com/)
 * and many others...
 
@@ -275,6 +190,10 @@ In the end, you should be able to articulate why your decision is the right one.
 * [Rails in Realtime](http://layervault.tumblr.com/post/30932219739/rails-in-realtime)
 * [Rails in Realtime, Part 2](http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2)
 
-*In either case be mindful of "layout thrashing"
-as [described here](http://kellegous.com/j/2013/01/26/layout-performance/).*
+We generally agree with DHH regarding heavy client side frameworks.
+
+<blockquote class="twitter-tweet"><p>JavaScript is like a spice. Best used in sprinkles and moderation.</p>&mdash; DHH (@dhh) <a href="https://twitter.com/dhh/statuses/374656854825005056">September 2, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+We've discovered that thoughtful use of Backbone or Knockout within Rails meets most of our needs.
 
