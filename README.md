@@ -47,8 +47,12 @@ If you find yourself fighting Rails too often, a more pragmatic approach might b
 
 ## Project Structure
 
-Ruby & Rails both ship with the tools needed to create well organized projects;
-namely, keeping concerns physically isolated.
+Unfortunately, some of the defaults in Rails seem to encourage monolithic design.
+This is especially true for developers new to the framework.
+
+However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
+
+The key is to keep concerns physically isolated.
 Applying the right strategies will ensure that your project is testable and maintainable well into the future.
 
 More coming soon...
