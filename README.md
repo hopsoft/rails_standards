@@ -1,4 +1,4 @@
-# Rails 3.2 Development Standards Guide
+# Rails 4.0 Development Standards Guide
 
 ## Approach
 
