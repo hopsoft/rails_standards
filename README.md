@@ -49,11 +49,49 @@ If you find yourself fighting Rails too often, a more pragmatic approach might b
 
 Unfortunately, some of the defaults in Rails seem to encourage monolithic design.
 This is especially true for developers new to the framework.
-
 However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
 
 The key is to keep concerns physically isolated.
 Applying the right strategies will ensure that your project is testable and maintainable well into the future.
+
+### The app Directory
+
+Every Rails project contains the following structure under app.
+
+```ruby
+|-project
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-models
+    |-views
+```
+
+Any meaningful project will warrant the creation of domain objects,
+which can typically be isolated into categories.
+i.e. presenters, processes, etc...
+Steve Klabnik discusses this concept in depth on [his blog](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design).
+
+Domain objects are first class citizens of the project and should be given proper status.
+To accomplish this, create directories under app to store related domain objects.
+
+```ruby
+|-project
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-models
+    |-processes  <-----
+    |-presenters <-----
+    |-views
+```
+
+Apply Rails-like standards to domain objects when appropriate.
+For example, apply similar naming strategies. e.g. `app/presenters/users_presenter.rb` etc...
 
 More coming soon...
 
