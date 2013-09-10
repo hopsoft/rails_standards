@@ -196,6 +196,11 @@ It can be daunting to know when creating a gem or engine is appropriate.
 Stephan Hagemann's presentation at Mountain West Ruby provides
 [some guidance](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
 
+Additional reading on this strategy.
+
+* [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
+* [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
+
 Custom gems & engines should be created under the vendor directory within your project.
 
 ```
