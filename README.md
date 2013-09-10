@@ -164,7 +164,7 @@ Meaningful projects warrant the creation of __domain objects__,
 which can usually be grouped into categories like:
 policies, presenters, services, etc...
 
-Additional reading on the subject of domain objects.
+Here is some additional reading on the subject of domain objects.
 
 * [The Secret to Rails OO Design](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design)
 * [7 Patterns to Refactor Fat ActiveRecord Models](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/)
@@ -203,7 +203,7 @@ It can be daunting to know when creating a gem or engine is appropriate.
 Stephan Hagemann's presentation at Mountain West Ruby provides
 [some guidance](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
 
-Additional reading on this strategy.
+Here is some additional reading on this strategy.
 
 * [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
 * [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
