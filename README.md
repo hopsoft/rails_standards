@@ -189,7 +189,7 @@ For example, apply similar naming strategies. e.g. `app/presenters/users_present
 Sometimes concerns should be grouped into isolated libraries.
 This creates clear lines of separation & allows strict control over depedencies.
 _Bundler supports local gems with relative paths,
-so there's no need to setup a gemserver or open source parts of the app._
+so there's no need to setup a gemserver or open-source parts of the app._
 
 This is an advanced technique.
 It can be daunting to know when creating a gem or engine is appropriate.
