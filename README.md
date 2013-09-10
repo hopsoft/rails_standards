@@ -160,7 +160,7 @@ Every Rails project contains the following structure under app.
     |-views
 ```
 
-Meaningful projects warrant the creation of *domain objects*,
+Meaningful projects warrant the creation of __domain objects__,
 which can typically be grouped into categories like:
 policies, presenters, services, etc...
 
