@@ -190,8 +190,7 @@ Sometimes concerns should be grouped into isolated libraries.
 This creates clear lines of separation & allows strict control over depedencies.
 
 This is an advanced technique.
-It can be a daunting to know when creating a gem or engine is appropriate; however,
-you should always be thinking about what can be moved out of the app.
+It can be daunting to know when creating a gem or engine is appropriate.
 Stephan Hagemann's presentation at Mountain West Ruby provides
 [some guidance on this](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
 
