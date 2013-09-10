@@ -188,14 +188,13 @@ For example, apply similar naming strategies. e.g. `app/presenters/users_present
 
 Sometimes concerns should be grouped into isolated libraries.
 This creates clear lines of separation & allows strict control over depedencies.
+Bundler supports local gems with relative paths,
+so there's no need to setup a gemserver or open source parts of the app.
 
 This is an advanced technique.
 It can be daunting to know when creating a gem or engine is appropriate.
 Stephan Hagemann's presentation at Mountain West Ruby provides
-[some guidance on this](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
-
-Bundler supports local gems with relative paths,
-so there's no need to setup a gemserver or open source parts of the app.
+[some guidance](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
 
 Custom gems & engines should be created under the vendor directory within your project.
 
