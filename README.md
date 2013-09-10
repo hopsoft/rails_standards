@@ -160,10 +160,16 @@ Every Rails project contains the following structure under app.
     |-views
 ```
 
-Meaningful projects will warrant the creation of domain objects,
-which can typically be isolated into categories.
-i.e. presenters, processes, etc...
-Steve Klabnik discusses this concept in depth on [his blog](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design).
+Meaningful projects warrant the creation of *domain objects*,
+which can typically be grouped into categories like:
+policies, presenters, services, etc...
+
+Additional reading on the subject of domain objects.
+
+* [The Secret to Rails OO Design](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design)
+* [7 Patterns to Refactor Fat ActiveRecord Models](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/)
+
+#### Managing Domain Objects
 
 Domain objects are first class citizens of the project and should be given proper status.
 To accomplish this, create directories under app to store related domain objects.
@@ -176,13 +182,14 @@ To accomplish this, create directories under app to store related domain objects
     |-helpers
     |-mailers
     |-models
-    |-processes  <-----
+    |-policies   <-----
     |-presenters <-----
+    |-services   <-----
     |-views
 ```
 
-Apply Rails-like standards to domain objects when appropriate.
-For example, apply similar naming strategies. e.g. `app/presenters/users_presenter.rb` etc...
+Always apply Rails-like standards to domain objects.
+For example, `app/presenters/users_presenter.rb` etc...
 
 ### Gems & Engines
 
