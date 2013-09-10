@@ -188,8 +188,8 @@ For example, apply similar naming strategies. e.g. `app/presenters/users_present
 
 Sometimes concerns should be grouped into isolated libraries.
 This creates clear lines of separation & allows strict control over depedencies.
-Bundler supports local gems with relative paths,
-so there's no need to setup a gemserver or open source parts of the app.
+_Bundler supports local gems with relative paths,
+so there's no need to setup a gemserver or open source parts of the app._
 
 This is an advanced technique.
 It can be daunting to know when creating a gem or engine is appropriate.
@@ -227,7 +227,7 @@ gem ENGINE_NAME, path: "/path/to/project/engines/ENGINE_NAME"
 ```
 
 Sometimes local gems have dependencies on other local gems.
-Simply aAdd the dependency to the gemspec like this.
+Simply add the dependency to the gemspec like this.
 
 ```ruby
 # /path/to/project/vendor/gems/GEM_NAME/GEM_NAME.gemspec
