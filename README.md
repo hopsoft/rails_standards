@@ -143,7 +143,7 @@ This is especially true for developers new to the framework.
 However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
 
 The key is to keep concerns physically isolated.
-Applying the right strategies will ensure that your project is testable and maintainable well into the future.
+Applying the right strategies will ensure your project is testable and maintainable well into the future.
 
 ### The app Directory
 
@@ -161,7 +161,7 @@ Every Rails project contains the following structure under app.
 ```
 
 Meaningful projects warrant the creation of __domain objects__,
-which can typically be grouped into categories like:
+which can usually be grouped into categories like:
 policies, presenters, services, etc...
 
 Additional reading on the subject of domain objects.
@@ -171,8 +171,8 @@ Additional reading on the subject of domain objects.
 
 #### Managing Domain Objects
 
-Domain objects are first class citizens of the project and should be given proper status.
-To accomplish this, create directories under app to store related domain objects.
+Domain objects are first class citizens and should be given proper status.
+To accomplish this, create directories under `app` to store related domain objects.
 
 ```
 |-project
@@ -194,7 +194,7 @@ For example, `app/presenters/users_presenter.rb` etc...
 ### Gems & Engines
 
 Sometimes concerns should be grouped into isolated libraries.
-This creates clear lines of separation & allows strict control over depedencies.
+This creates clear separation & allows strict control over depedencies.
 _Bundler supports local gems with relative paths,
 so there's no need to setup a gemserver or open-source parts of the app._
 
@@ -250,7 +250,7 @@ Gem::Specification.new do |spec|
 end
 ```
 
-Then update the Gemfile.
+Then update the Gemfile. _Required if you plan to write & run isolated tests for this Gem._
 
 ```ruby
 # /path/to/project/vendor/gems/GEM_NAME/Gemfile
