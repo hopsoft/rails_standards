@@ -240,6 +240,8 @@ gem GEM_NAME, path: "/path/to/project/gems/GEM_NAME"
 gem ENGINE_NAME, path: "/path/to/project/engines/ENGINE_NAME"
 ```
 
+##### Managing Local Gem Dependencies
+
 Sometimes local gems have dependencies on other local gems.
 Simply add the dependency to the gemspec like this.
 
