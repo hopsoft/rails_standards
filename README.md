@@ -22,8 +22,8 @@ Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Se
 
 * Prefer descriptive names in your code. e.g. `user_count` is a better name than `len`.
 * Use [YARD](http://yardoc.org/) formatted comments when code documentation is deemed necessary.
-* Avoid in method comments as they are a cue that the method is too complex.
-Refactor into additional classes/methods that express intent & purpose.
+* Avoid in method comments as they are a cue that the method is too complex; instead,
+refactor into additional classes/methods that better express intent & purpose.
 
 ## General Guidelines
 
@@ -187,17 +187,16 @@ For example, apply similar naming strategies. e.g. `app/presenters/users_present
 ### Gems & Engines
 
 Sometimes concerns should be grouped into isolated libraries.
-This creates clear lines of separation & allows strict control of depedencies.
+This creates clear lines of separation & allows strict control over depedencies.
 
-Creating gems & engines is an advanced technique.
-It can be a daunting to know when it's appropriate; however,
+This is an advanced technique.
+It can be a daunting to know when creating a gem or engine is appropriate; however,
 you should always be thinking about what can be moved out of the app.
-
 Stephan Hagemann's presentation at Mountain West Ruby provides
 [some guidance on this](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
 
-Also, don't worry about needing to open source parts of your app.
-Bundler supports local gems with relative paths.
+Bundler supports local gems with relative paths,
+so there's no need to setup a gemserver or open source parts of the app.
 
 Custom gems & engines should be created under the vendor directory within your project.
 
