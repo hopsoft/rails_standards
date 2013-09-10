@@ -9,13 +9,6 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 * Product and API features
 * Implementation specifics
 
-## Files
-
-* Spaces not tabs
-* tab = 2 spaces
-* Unix line endings
-* UTF-8 encoding
-
 ## Documentation
 
 Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Self-documenting).
