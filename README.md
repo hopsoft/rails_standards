@@ -45,56 +45,6 @@ just be sure that you aware of the trade-offs.
 *Be thoughtful when applying these rules.
 If you find yourself fighting Rails too often, a more pragmatic approach might be warranted.*
 
-## Project Structure
-
-Unfortunately, some of the defaults in Rails seem to encourage monolithic design.
-This is especially true for developers new to the framework.
-However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
-
-The key is to keep concerns physically isolated.
-Applying the right strategies will ensure that your project is testable and maintainable well into the future.
-
-### The app Directory
-
-Every Rails project contains the following structure under app.
-
-```ruby
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-    |-views
-```
-
-Any meaningful project will warrant the creation of domain objects,
-which can typically be isolated into categories.
-i.e. presenters, processes, etc...
-Steve Klabnik discusses this concept in depth on [his blog](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design).
-
-Domain objects are first class citizens of the project and should be given proper status.
-To accomplish this, create directories under app to store related domain objects.
-
-```ruby
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-    |-processes  <-----
-    |-presenters <-----
-    |-views
-```
-
-Apply Rails-like standards to domain objects when appropriate.
-For example, apply similar naming strategies. e.g. `app/presenters/users_presenter.rb` etc...
-
-More coming soon...
-
 ## Models
 
 * Never use dynamic finders. e.g. `find_by_...`
@@ -184,6 +134,119 @@ module CowboyString
 end
 ::String.send(:include, CowboyString)
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
+```
+
+## Project Structure
+
+Unfortunately, some of the defaults in Rails seem to encourage monolithic design.
+This is especially true for developers new to the framework.
+However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
+
+The key is to keep concerns physically isolated.
+Applying the right strategies will ensure that your project is testable and maintainable well into the future.
+
+### The app Directory
+
+Every Rails project contains the following structure under app.
+
+```ruby
+|-project
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-models
+    |-views
+```
+
+Meaningful projects will warrant the creation of domain objects,
+which can typically be isolated into categories.
+i.e. presenters, processes, etc...
+Steve Klabnik discusses this concept in depth on [his blog](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design).
+
+Domain objects are first class citizens of the project and should be given proper status.
+To accomplish this, create directories under app to store related domain objects.
+
+```
+|-project
+  |-app
+    |-assets
+    |-controllers
+    |-helpers
+    |-mailers
+    |-models
+    |-processes  <-----
+    |-presenters <-----
+    |-views
+```
+
+Apply Rails-like standards to domain objects when appropriate.
+For example, apply similar naming strategies. e.g. `app/presenters/users_presenter.rb` etc...
+
+### Gems & Engines
+
+Sometimes concerns should be grouped into isolated libraries.
+This creates clear lines of separation & allows strict control of depedencies.
+
+Creating gems & engines is an advanced technique.
+It can be a daunting to know when it's appropriate; however,
+you should always be thinking about what can be moved out of the app.
+
+Stephan Hagemann's presentation at Mountain West Ruby provides
+[some guidance on this](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
+
+Also, don't worry about needing to open source parts of your app.
+Bundler supports local gems with relative paths.
+
+Custom gems & engines should be created under the vendor directory within your project.
+
+```
+|-project
+  |-vendor
+    |-assets
+    |-engines <-----
+    |-gems    <-----
+```
+
+To create a gem or engine simply run the following commands.
+
+```bash
+# gem
+cd /path/to/project/vendor/gems
+bundle gem GEM_NAME
+
+# engine
+cd /path/to/project
+rails plugin new vendor/engines/ENGINE_NAME --mountable
+```
+
+Update your Gemfile to point to the correct gem locations.
+
+```ruby
+# /path/to/project/Gemfile
+gem GEM_NAME, path: "/path/to/project/gems/GEM_NAME"
+gem ENGINE_NAME, path: "/path/to/project/engines/ENGINE_NAME"
+```
+
+Sometimes local gems have dependencies on other local gems.
+Simply aAdd the dependency to the gemspec like this.
+
+```ruby
+# /path/to/project/vendor/gems/GEM_NAME/GEM_NAME.gemspec
+Gem::Specification.new do |spec|
+  spec.add_dependency "OTHER_LOCAL_GEM_NAME"
+end
+```
+
+Then update the Gemfile.
+
+```ruby
+# /path/to/project/vendor/gems/GEM_NAME/Gemfile
+# this is required for testing the gem in isolation
+group :test do
+  gem 'OTHER_LOCAL_GEM_NAME', :path => '/path/to/project/vendor/gems/OTHER_LOCAL_GEM_NAME'
+end
 ```
 
 ## Gem Dependencies
