@@ -201,6 +201,8 @@ Additional reading on this strategy.
 * [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
 * [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
 
+#### Managing Local Gems & Engines
+
 Custom gems & engines should be created under the vendor directory within your project.
 
 ```
