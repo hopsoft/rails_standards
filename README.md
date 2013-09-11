@@ -182,7 +182,7 @@ To accomplish this, create directories under `app` to store related domain objec
 ```
 
 Always apply Rails-like standards to domain objects.
-For example, `app/presenters/users_presenter.rb` etc...
+For example, `app/presenters/user_presenter.rb` etc...
 
 ### Gems & Engines
 
