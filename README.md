@@ -282,7 +282,7 @@ Using `bundle outdated` will help with this.
 
 ## A Note on Client Side Frameworks
 
-Exciting things are happening in the world of client side frameworks.
+Exciting things are happening in the world of [client side frameworks](http://todomvc.com/).
 
 * [Ember](http://emberjs.com/)
 * [Angular](http://angularjs.org/)
@@ -301,10 +301,9 @@ In the end, you should be able to articulate why your decision is the right one.
 * [Rails in Realtime](http://layervault.tumblr.com/post/30932219739/rails-in-realtime)
 * [Rails in Realtime, Part 2](http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2)
 
-We generally agree with DHH regarding heavy client side frameworks.
-
 <blockquote class="twitter-tweet"><p>JavaScript is like a spice. Best used in sprinkles and moderation.</p>&mdash; DHH (@dhh) <a href="https://twitter.com/dhh/statuses/374656854825005056">September 2, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-We've discovered that thoughtful use of [Knockout](https://github.com/hopsoft/knockout_app) or Backbone within Rails meets most of our needs.
+We generally agree with DHH regarding client side frameworks and have discovered that
+thoughtful use of [Knockout](https://github.com/hopsoft/knockout_app) meets most of our needs.
 
