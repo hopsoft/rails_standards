@@ -306,5 +306,5 @@ We generally agree with DHH regarding heavy client side frameworks.
 <blockquote class="twitter-tweet"><p>JavaScript is like a spice. Best used in sprinkles and moderation.</p>&mdash; DHH (@dhh) <a href="https://twitter.com/dhh/statuses/374656854825005056">September 2, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-We've discovered that thoughtful use of Backbone or Knockout within Rails meets most of our needs.
+We've discovered that thoughtful use of [Knockout](https://github.com/hopsoft/knockout_app) or Backbone within Rails meets most of our needs.
 
