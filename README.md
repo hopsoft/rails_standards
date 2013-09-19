@@ -280,6 +280,14 @@ A strategy should be employed to ensure the project doesn't drift too far from c
 For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
 Using `bundle outdated` will help with this.
 
+## Code Quality Tools
+
+It's a good idea to run regular code analysis against your project.
+Here are some of the tools we use.
+
+* [Rails Best Practices](https://github.com/railsbp/rails_best_practices)
+* [SimpleCov](https://github.com/colszowka/simplecov)
+
 ## A Note on Client Side Frameworks
 
 Exciting things are happening in the world of [client side frameworks](http://todomvc.com/).
