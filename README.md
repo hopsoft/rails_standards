@@ -292,8 +292,9 @@ Here are some of the tools we use.
 
 Exciting things are happening in the world of [client side frameworks](http://todomvc.com/).
 
-* [Ember](http://emberjs.com/)
+* [React](http://facebook.github.io/react/)
 * [Angular](http://angularjs.org/)
+* [Ember](http://emberjs.com/)
 * [Backbone](http://backbonejs.org/)
 * [Knockout](http://knockoutjs.com/)
 * and many others...
@@ -313,5 +314,5 @@ In the end, you should be able to articulate why your decision is the right one.
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 We generally agree with DHH regarding client side frameworks and have discovered that
-thoughtful use of [Knockout](https://github.com/hopsoft/knockout_app) meets most of our needs.
+thoughtful use of something like [Knockout](https://github.com/hopsoft/knockout_app) meets most of our needs.
 
