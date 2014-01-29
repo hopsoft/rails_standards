@@ -297,7 +297,7 @@ Exciting things are happening in the world of [client side frameworks](http://to
 * [Ember](http://emberjs.com/)
 * [Backbone](http://backbonejs.org/)
 * [Knockout](http://knockoutjs.com/)
-* and many others...
+* [and many others...](http://todomvc.com/)
 
 **Be thoughtful about the decision to use a client side framework.**
 Ask yourself if the complexity of maintaining 2 independent full stacks is the right decision.
