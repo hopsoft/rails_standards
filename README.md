@@ -1,5 +1,7 @@
 # Rails 4.0 Development Standards Guide
 
+[![Gitter chat](https://badges.gitter.im/hopsoft/rails_standards.png)](https://gitter.im/hopsoft/rails_standards)
+
 ## Approach
 
 Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
