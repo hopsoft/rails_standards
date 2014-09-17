@@ -85,7 +85,7 @@ Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372
 
 #### Concerns Guide
 
-* Concerns should be created under app directory where they are deemed helpful.
+* Concerns should be created in the `app/COMPONENT/concerns` directory.
 * Concerns should use the naming convention `COMPONENT` + `BEHAVIOR`.
   For example, `app/models/concerns/model_has_status.rb`.
 * CRUD operations that are limited to a single model should be implemented in the model.
