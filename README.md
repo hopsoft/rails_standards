@@ -85,6 +85,9 @@ Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372
 
 #### Concerns Guide
 
+* Concerns should be created under app directory where they are deemed helpful.
+* Concerns should use the naming convention `COMPONENT` + `BEHAVIOR`.
+  For example, `app/models/concerns/model_has_status.rb`.
 * CRUD operations that are limited to a single model should be implemented in the model.
   For example, a `full_name` method that concats `first_name` and `last_name`
 * CRUD operations that reach beyond this model should be implemented as a Concern.
@@ -316,5 +319,5 @@ In the end, you should be able to articulate why your decision is the right one.
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 We generally agree with DHH regarding client side frameworks and have discovered that
-thoughtful use of something like [Knockout](https://github.com/hopsoft/knockout_app) meets most of our needs.
+thoughtful use of something like [Vue](http://vuejs.org/) meets most of our needs.
 
