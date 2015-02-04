@@ -66,7 +66,7 @@ end
 
 ### Model Implementation
 
-Its generally a good idea to isolate different concerns into separate modules.
+Its generally a good idea to isolate concerns into separate modules.
 Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns).
 
 ```
@@ -85,13 +85,13 @@ Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372
 
 * Concerns should be created in the `app/COMPONENT/concerns` directory.
 * Concerns should use the naming convention `COMPONENT` + `BEHAVIOR`.
-  For example, `app/models/concerns/model_has_status.rb`.
+  For example, `app/models/concerns/model_has_status.rb` or `app/controllers/concerns/controller_supports_cors.rb`.
 * CRUD operations that are limited to a single model should be implemented in the model.
   For example, a `full_name` method that concats `first_name` and `last_name`
 * CRUD operations that reach beyond this model should be implemented as a Concern.
   For example, a `status` method that needs to look at a different model to calculate.
 * Simple non-CRUD operations should be implemented as a Concern.
-* **Important!** Concerns should be isolated and self contained.
+* __Important!__ Concerns should be isolated and self contained.
   They should NOT make assumptions about how the receiver is composed at runtime.
   It's unacceptable for a concern to invoke methods defined in other concerns; however,
   invoking methods defined in the intended receiver is permissible.
@@ -141,70 +141,42 @@ However, it's important to note that Ruby & Rails include everything you need to
 The key is to keep concerns physically isolated.
 Applying the right strategies will ensure your project is testable and maintainable well into the future.
 
-### The app Directory
-
-Every Rails project contains the following structure under app.
-
-```ruby
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-    |-views
-```
+### Domain Objects
 
 Meaningful projects warrant the creation of __domain objects__,
 which can usually be grouped into categories like:
 policies, presenters, services, etc...
+
+Domain objects should be treated as first class citizens of your Rails application.
+As such they should live under `app/DOMAIN`.
+For example, `app/policies`, `app/presenters`, etc...
+
+Always apply Rails-like standards to domain object names.
+For example, `app/presenters/user_presenter.rb`
 
 Here is some additional reading on the subject of domain objects.
 
 * [The Secret to Rails OO Design](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design)
 * [7 Patterns to Refactor Fat ActiveRecord Models](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/)
 
-#### Managing Domain Objects
-
-Domain objects are first class citizens and should be given proper status.
-To accomplish this, create directories under `app` to store related domain objects.
-
-```
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-    |-policies   <-----
-    |-presenters <-----
-    |-services   <-----
-    |-views
-```
-
-Always apply Rails-like standards to domain objects.
-For example, `app/presenters/user_presenter.rb` etc...
-
 ### Gems & Engines
 
 Sometimes concerns should be grouped into isolated libraries.
-This creates clear separation & allows strict control over depedencies.
-_Bundler supports local gems with relative paths,
-so there's no need to setup a gemserver or open-source parts of the app._
+This creates clear separation & allows strict control of depedencies.
 
-This is an advanced technique.
+_Note: This approach does not require you to open-source parts of the app._
+
+Bundler supports 2 strategies that support this type of application structure.
+
+1. [Locally pathed gems](http://bundler.io/v1.7/gemfile.html) - look for the `:path` option
+2. [Git hosted gems](http://bundler.io/v1.7/git.html)
+
+_You can also host a [local Gemserver](http://guides.rubygems.org/run-your-own-gem-server/)._
+
 It can be daunting to know when creating a gem or engine is appropriate.
 Stephan Hagemann's presentation at Mountain West Ruby provides
 [some guidance](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
-
-Here is some additional reading on this strategy.
-
-* [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
-* [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
-
-#### Managing Local Gems & Engines
+He is also writing a book on [Component based Rails Applications](https://leanpub.com/cbra).
 
 Custom gems & engines should be created under the vendor directory within your project.
 
@@ -216,47 +188,10 @@ Custom gems & engines should be created under the vendor directory within your p
     |-gems    <-----
 ```
 
-To create a gem or engine simply run the following commands.
+Additional reading on creating modular Rails applications.
 
-```bash
-# gem
-cd /path/to/project/vendor/gems
-bundle gem GEM_NAME
-
-# engine
-cd /path/to/project
-rails plugin new vendor/engines/ENGINE_NAME --mountable
-```
-
-Update your Gemfile to point to the correct gem locations.
-
-```ruby
-# /path/to/project/Gemfile
-gem GEM_NAME, path: "/path/to/project/gems/GEM_NAME"
-gem ENGINE_NAME, path: "/path/to/project/engines/ENGINE_NAME"
-```
-
-##### Managing Local Gem Dependencies
-
-Sometimes local gems have dependencies on other local gems.
-Simply add the dependency to the gemspec like this.
-
-```ruby
-# /path/to/project/vendor/gems/GEM_NAME/GEM_NAME.gemspec
-Gem::Specification.new do |spec|
-  spec.add_dependency "OTHER_LOCAL_GEM_NAME"
-end
-```
-
-Then update the Gemfile. _Required if you plan to write & run isolated tests for this Gem._
-
-```ruby
-# /path/to/project/vendor/gems/GEM_NAME/Gemfile
-# this is required for testing the gem in isolation
-group :test do
-  gem 'OTHER_LOCAL_GEM_NAME', :path => '/path/to/project/vendor/gems/OTHER_LOCAL_GEM_NAME'
-end
-```
+* [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
+* [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
 
 ## Gem Dependencies
 
