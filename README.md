@@ -162,7 +162,7 @@ For example:
 Always apply Rails-like standards to domain object names.
 For example, `app/presenters/user_presenter.rb`
 
-Here is some additional reading on the subject of domain objects.
+Additional reading on the subject of domain objects.
 
 * [The Secret to Rails OO Design](http://blog.steveklabnik.com/posts/2011-09-06-the-secret-to-rails-oo-design)
 * [7 Patterns to Refactor Fat ActiveRecord Models](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/)
