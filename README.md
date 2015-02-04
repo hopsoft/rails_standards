@@ -145,11 +145,19 @@ Applying the right strategies will ensure your project is testable and maintaina
 
 Meaningful projects warrant the creation of __domain objects__,
 which can usually be grouped into categories like:
-policies, presenters, services, etc...
+
+- policies
+- presenters
+- services
+- etc...
 
 Domain objects should be treated as first class citizens of your Rails application.
 As such they should live under `app/DOMAIN`.
-For example, `app/policies`, `app/presenters`, etc...
+For example:
+
+- `app/policies`
+- `app/presenters`
+- etc...
 
 Always apply Rails-like standards to domain object names.
 For example, `app/presenters/user_presenter.rb`
