@@ -187,7 +187,6 @@ Additional reading on creating modular Rails applications.
 * [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
 * [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
 * [Rails Engines at TaskRabbit](http://tech.taskrabbit.com/blog/2014/02/11/rails-4-engines/)
-*
 
 Here are some popular Rails engines that illustrate how to properly isolate responsibilities to achieve [modularity](http://en.wikipedia.org/wiki/Modular_programming).
 
