@@ -64,24 +64,15 @@ end
 
 *NOTE: The comments listed above should exist in the file to serve as a visual reminder of the format.*
 
-### Model Implementation
+## Controllers
+
+Controllers should use [strong parameters](http://api.rubyonrails.org/classes/ActionController/StrongParameters.html)
+to sanitize params before performing any other logic.
+
+## Concerns
 
 Its generally a good idea to isolate concerns into separate modules.
 Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372-put-chubby-models-on-a-diet-with-concerns).
-
-```
-|-project
-  |-app
-    |-assets
-    |-controllers
-    |-helpers
-    |-mailers
-    |-models
-      |-concerns <-----
-    |-views
-```
-
-#### Concerns Guide
 
 * Concerns should be created in the `app/COMPONENT/concerns` directory.
 * Concerns should use the naming convention `COMPONENT` + `BEHAVIOR`.
@@ -95,11 +86,6 @@ Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372
   They should NOT make assumptions about how the receiver is composed at runtime.
   It's unacceptable for a concern to invoke methods defined in other concerns; however,
   invoking methods defined in the intended receiver is permissible.
-
-## Controllers
-
-Controllers should use [strong parameters](http://api.rubyonrails.org/classes/ActionController/StrongParameters.html)
-to sanitize params before performing any other logic.
 
 ## Extensions & Monkey Patches
 
