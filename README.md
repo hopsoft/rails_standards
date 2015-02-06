@@ -187,6 +187,15 @@ Additional reading on creating modular Rails applications.
 * [How to design for loosely-coupled, highly-cohesive components within a Rails application](http://pivotallabs.com/unbuilt-rails-dependencies-how-to-design-for-loosely-coupled-highly-cohesive-components-within-a-rails-application/)
 * [Migrating from a single Rails app to a suite of Rails engines](http://pivotallabs.com/migrating-from-a-single-rails-app-to-a-suite-of-rails-engines/)
 
+Here are some popular Rails engines that illustrate how to properly isolate responsibilities to achieve [modularity](http://en.wikipedia.org/wiki/Modular_programming).
+
+- https://github.com/plataformatec/devise
+- https://github.com/spree/spree
+- https://github.com/radiant/radiant
+- https://github.com/refinery/refinerycms
+- https://github.com/seyhunak/twitter-bootstrap-rails
+
+
 ## Gem Dependencies
 
 Gem dependencies should be hardened before deploying the application to production.
