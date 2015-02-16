@@ -196,6 +196,20 @@ Here are some popular Rails engines that illustrate how to properly isolate resp
 - https://github.com/refinery/refinerycms
 - https://github.com/seyhunak/twitter-bootstrap-rails
 
+## Refactoring to Better Design
+
+Good software design often emerges empirically from implementation.
+The practice of continually moving toward better design is known as refactoring.
+
+Plan on a persistent effort to combat code's natural state of entropy.
+_Use prudence to ensure you don't attempt refactoring too much at once._
+
+### Refactoring Priorities
+
+1. Refactor to __methods before classes__
+1. Refactor to __classes before libraries__
+1. Refactor to __libraries before services__
+1. Refactor to __libraries and/or services before a rewrite__
 
 ## Gem Dependencies
 
