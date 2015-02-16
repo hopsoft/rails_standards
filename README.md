@@ -196,11 +196,10 @@ Here are some popular Rails engines that illustrate how to properly isolate resp
 - https://github.com/refinery/refinerycms
 - https://github.com/seyhunak/twitter-bootstrap-rails
 
-## Refactoring to Better Design
+## Refactoring
 
 Good software design often emerges empirically from implementation.
 The practice of continually moving toward better design is known as refactoring.
-
 Plan on a persistent effort to combat code's natural state of entropy.
 _Use prudence to ensure you don't attempt refactoring too much at once._
 
