@@ -160,7 +160,7 @@ This creates clear separation & allows strict control of depedencies.
 
 _Note: This approach does not require you to open-source parts of the app._
 
-Bundler supports 2 strategies that support this type of application structure.
+Bundler supports 2 strategies that facilitate this type of application structure.
 
 1. [Locally pathed gems](http://bundler.io/v1.7/gemfile.html) - look for the `:path` option
 2. [Git hosted gems](http://bundler.io/v1.7/git.html)
