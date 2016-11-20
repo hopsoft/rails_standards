@@ -1,5 +1,15 @@
 # Rails 5.X Development Standards Guide
 
+## TODOs
+
+Items I need to expand on in this document.
+
+- [ ] Always use a first class model for HABTM relationships
+- [ ] Only use nested routes when absolutely necessary
+- [ ] Use CoffeeScript
+- [ ] Use Turbolinks
+- [ ] Wire up unobtrusive JavaScript with data attributes
+
 ## Approach
 
 ### Do Not Fight the Framework
