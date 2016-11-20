@@ -1,6 +1,16 @@
-# Rails 4.X Development Standards Guide
+# Rails 5.X Development Standards Guide
 
 ## Approach
+
+### Do Not Fight the Framework
+
+If you find yourself fighting the framework,
+[take some time](https://m.signalvnoise.com/give-it-five-minutes-b8115d6f2361#.oq7mwovre) &
+ask how the architects & designers of the framework would solve the problems you're facing.
+
+Take the time to get into the heads of those who've created the framework.
+
+### KISS & YAGNI
 
 Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 [KISS](http://en.wikipedia.org/wiki/KISS_principle) principles to all of the following.
@@ -36,26 +46,25 @@ just be sure that you aware of the trade-offs.
   *Such references should be passed in*.
 
 *Be thoughtful when applying these rules.
-If you find yourself fighting Rails too often, a more pragmatic approach might be warranted.*
+If you find yourself fighting Rails, a more pragmatic approach is likely warranted.*
 
 ## Models
 
-* Never use dynamic finders. e.g. `find_by_...`
 * Apply extreme caution when using [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)
-and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they typically lead to unwanted coupling.
+and [observers](http://api.rubyonrails.org/classes/ActiveRecord/Observer.html) as they often lead to undesired coupling.
 
 **All models should be organized using the following format.**
 
 ```ruby
 class MyModel < ActiveRecord::Base
   # extends ...................................................................
+  # class methods .............................................................
   # includes ..................................................................
   # relationships .............................................................
   # validations ...............................................................
   # callbacks .................................................................
   # scopes ....................................................................
   # additional config (i.e. accepts_nested_attribute_for etc...) ..............
-  # class methods .............................................................
   # public instance methods ...................................................
   # protected instance methods ................................................
   # private instance methods ..................................................
@@ -77,15 +86,8 @@ Use concerns as outlined in [this blog post](http://37signals.com/svn/posts/3372
 * Concerns should be created in the `app/COMPONENT/concerns` directory.
 * Concerns should use the naming convention `COMPONENT` + `BEHAVIOR`.
   For example, `app/models/concerns/model_has_status.rb` or `app/controllers/concerns/controller_supports_cors.rb`.
-* CRUD operations that are limited to a single model should be implemented in the model.
-  For example, a `full_name` method that concats `first_name` and `last_name`
-* CRUD operations that reach beyond this model should be implemented as a Concern.
-  For example, a `status` method that needs to look at a different model to calculate.
-* Simple non-CRUD operations should be implemented as a Concern.
 * __Important!__ Concerns should be isolated and self contained.
   They should NOT make assumptions about how the receiver is composed at runtime.
-  It's unacceptable for a concern to invoke methods defined in other concerns; however,
-  invoking methods defined in the intended receiver is permissible.
 
 ## Extensions & Monkey Patches
 
@@ -104,7 +106,7 @@ All extensions & monkey patches should live under an `extensions` directory in `
 ```
 
 Use modules to extend objects or add monkey patches.
-*This provides some introspection assistance when you need to track down weirdness.*
+*This will provide introspection help so you can track things down at runtime.*
 
 Here's an example:
 
@@ -118,18 +120,9 @@ end
 String.ancestors # => [String, CowboyString, Enumerable, Comparable, Object, Kernel]
 ```
 
-## Project Structure
+## Domain Objects
 
-Unfortunately, some of the defaults in Rails seem to encourage monolithic design.
-This is especially true for developers new to the framework.
-However, it's important to note that Ruby & Rails include everything you need to create well organized projects.
-
-The key is to keep concerns physically isolated.
-Applying the right strategies will ensure your project is testable and maintainable well into the future.
-
-### Domain Objects
-
-Meaningful projects warrant the creation of __domain objects__,
+Meaningful projects may warrant the creation of __domain objects__,
 which can usually be grouped into categories like:
 
 - policies
@@ -167,12 +160,7 @@ Bundler supports 2 strategies that facilitate this type of application structure
 
 _You can also host a [local Gemserver](http://guides.rubygems.org/run-your-own-gem-server/)._
 
-It can be daunting to know when creating a gem or engine is appropriate.
-Stephan Hagemann's presentation at Mountain West Ruby provides
-[some guidance](http://www.confreaks.com/videos/2350-mwrc2013-component-based-architectures-in-ruby-and-rails).
-He is also writing a book on [Component based Rails Applications](https://leanpub.com/cbra).
-
-Custom gems & engines should be created under the vendor directory within your project.
+Locally pathed gems & engines should be created under the vendor directory within your project.
 
 ```
 |-project
@@ -181,6 +169,9 @@ Custom gems & engines should be created under the vendor directory within your p
     |-engines <-----
     |-gems    <-----
 ```
+
+It can be daunting to know when creating a gem or engine is appropriate.
+Stephan Hagemann's book on [Component Based Rails Applications](https://leanpub.com/cbra) provides some guidance.
 
 Additional reading on creating modular Rails applications.
 
@@ -210,28 +201,30 @@ _Use prudence to ensure you don't attempt refactoring too much at once._
 1. Refactor to __libraries before services__
 1. Refactor to __libraries and/or services before a rewrite__
 
+Do not move to services too early.
+If you haven't refactored to better abstractions first, services may actually compound your problems.
+
 ## Gem Dependencies
 
 Gem dependencies should be hardened before deploying the application to production.
 This will ensure application stability.
 
-We recommend using [exact or tilde version specifiers](http://gembundler.com/v1.2/gemfile.html).
+Use [precise version specifiers](http://gembundler.com/v1.2/gemfile.html).
 When using tilde specifiers, be sure to include at least the major & minor numbers.
-Here's an example.
 
 ```ruby
 # Gemfile
-gem 'rails', '3.2.11' # GOOD: exact
-gem 'pg', '~>0.9'     # GOOD: tilde
-gem 'yell', '>=1.2'   # BAD: unspecific
-gem 'nokogiri'        # BAD: unversioned
+gem 'rails', '5.0.0.1' # GOOD: exact
+gem 'pg', '~>0.19.0'   # GOOD: tilde
+gem 'puma', '>=3.6'    # BAD: unspecific
+gem 'nokogiri'         # BAD: unversioned
 ```
 
-Bundler's Gemfile.lock solves the same problem, but we discovered that inadvertent `bundle updates` can cause problems.
-It's much better to be explicit in the Gemfile and guarantee app stability.
+Bundler's Gemfile.lock solves the same problem, but inadvertent `bundle updates` can still cause problems.
+Better to be explicit in the Gemfile and guarantee stability.
 
-**This will cause your project to slowy drift away from the bleeding edge.**
-A strategy should be employed to ensure the project doesn't drift too far from contemporary gem versions.
+**This will cause your project to slowy drift from the bleeding edge.**
+A strategy should be employed to ensure the project doesn't slip too far from contemporary gem versions.
 For example, upgrade gems on a regular schedule *(every 3-4 months)* and be vigilant about security patches.
 Using `bundle outdated` will help with this.
 
@@ -242,32 +235,3 @@ Here are some of the tools we use.
 
 * [Rails Best Practices](https://github.com/railsbp/rails_best_practices)
 * [SimpleCov](https://github.com/colszowka/simplecov)
-
-## A Note on Client Side Frameworks
-
-Exciting things are happening in the world of [client side frameworks](http://todomvc.com/).
-
-* [React](http://facebook.github.io/react/)
-* [Angular](http://angularjs.org/)
-* [Ember](http://emberjs.com/)
-* [Backbone](http://backbonejs.org/)
-* [Knockout](http://knockoutjs.com/)
-* [and many others...](http://todomvc.com/)
-
-**Be thoughtful about the decision to use a client side framework.**
-Ask yourself if the complexity of maintaining 2 independent full stacks is the right decision.
-Often times there are better and simpler solutions.
-
-Read the following articles before deciding.
-In the end, you should be able to articulate why your decision is the right one.
-
-* [How Basecamp Next got to be so damn fast without using much client-side UI](http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui)
-* [Rails in Realtime](http://layervault.tumblr.com/post/30932219739/rails-in-realtime)
-* [Rails in Realtime, Part 2](http://layervault.tumblr.com/post/31462727280/rails-in-realtime-part-2)
-
-<blockquote class="twitter-tweet"><p>JavaScript is like a spice. Best used in sprinkles and moderation.</p>&mdash; DHH (@dhh) <a href="https://twitter.com/dhh/statuses/374656854825005056">September 2, 2013</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-We generally agree with DHH regarding client side frameworks and have discovered that
-thoughtful use of something like [Vue](http://vuejs.org/) meets most of our needs.
-
