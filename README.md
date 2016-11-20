@@ -7,8 +7,7 @@
 If you find yourself fighting the framework,
 [take some time](https://m.signalvnoise.com/give-it-five-minutes-b8115d6f2361#.oq7mwovre) &
 ask how the architects & designers of the framework would solve the problems you're facing.
-
-Take the time to get into the heads of those who've created the framework.
+Getting into the heads of those who've created the framework is time well spent & will save you hours of work & frustration.
 
 ### KISS & YAGNI
 
