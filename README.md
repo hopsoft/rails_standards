@@ -19,6 +19,17 @@ Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
 * Product and API features
 * Implementation specifics
 
+### SPAs & Rails API
+
+Use [Rails API](http://edgeguides.rubyonrails.org/api_app.html) if you're building a
+[Single Page Application](https://en.wikipedia.org/wiki/Single-page_application); otherwise,
+stick with Rails conventions.
+
+Make the same efforts to learn & understand [Turbolinks](https://github.com/turbolinks/turbolinks)
+as you would any other JavaScript framework.
+
+https://www.youtube.com/watch?v=SWEts0rlezA
+
 ## Documentation
 
 Make an effort for code to be [self documenting](http://en.wikipedia.org/wiki/Self-documenting).
