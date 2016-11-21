@@ -9,6 +9,9 @@ Items I need to expand on in this document.
 - [ ] Use CoffeeScript
 - [ ] Use Turbolinks
 - [ ] Wire up unobtrusive JavaScript with data attributes
+- [ ] Use strict REST actions in your controllers
+- [ ] Adhere to the convention of 1 JS file & 1 CSS file per controller
+- [ ] Possibly introduce 1 JS & CSS file per RESTful action for better isolation of concerns
 
 ## Approach
 
