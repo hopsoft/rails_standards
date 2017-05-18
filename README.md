@@ -5,13 +5,14 @@
 Items I need to expand on in this document.
 
 - [ ] Always use a first class model for HABTM relationships
-- [ ] Only use nested routes when absolutely necessary
+- [ ] Don't use nested routes... or be ready to justify why you need them
 - [ ] Use CoffeeScript
 - [ ] Use Turbolinks
 - [ ] Wire up unobtrusive JavaScript with data attributes
 - [ ] Use strict REST actions in your controllers
 - [ ] Adhere to the convention of 1 JS file & 1 CSS file per controller
 - [ ] Possibly introduce 1 JS & CSS file per RESTful action for better isolation of concerns
+- [ ] Adhere to the convention of using the same controller for both API & Website... fork the concern at the view layer
 
 ## Approach
 
