@@ -13,6 +13,8 @@ Items I need to expand on in this document.
 - [ ] Adhere to the convention of 1 JS file & 1 CSS file per controller
 - [ ] Possibly introduce 1 JS & CSS file per RESTful action for better isolation of concerns
 - [ ] Adhere to the convention of using the same controller for both API & Website... fork the concern at the view layer
+- [ ] Never load data with a before filter... prefer explicitness inside the controller action.
+- [ ] Don't use the pattern (render and return)... prefer (return render)
 
 ## Approach
 
