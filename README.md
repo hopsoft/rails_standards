@@ -15,6 +15,8 @@ Items I need to expand on in this document.
 - [ ] Adhere to the convention of using the same controller for both API & Website... fork the concern at the view layer
 - [ ] Never load data with a before filter... prefer explicitness inside the controller action.
 - [ ] Don't use the pattern (render and return)... prefer (return render)
+- [ ] Use UUID pks
+- [ ] Use jbuilder & ensure that all JSON responses pipe through view templates
 
 ## Approach
 
