@@ -17,6 +17,7 @@ Items I need to expand on in this document.
 - [ ] Don't use the pattern (render and return)... prefer (return render)
 - [ ] Use UUID pks
 - [ ] Use jbuilder & ensure that all JSON responses pipe through view templates
+- [ ] Use webpacker for all JavaScript dependencies i.e. no Ruby wrapped JavaScript
 
 ## Approach
 
