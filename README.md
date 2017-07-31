@@ -1,5 +1,7 @@
 # Rails 4.X Development Standards Guide
 
+[![Sponsor](https://app.codesponsor.io/embed/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/rails_standards.svg)](https://app.codesponsor.io/link/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/rails_standards)
+
 ## Approach
 
 Apply the [YAGNI](http://en.wikipedia.org/wiki/You_ain't_gonna_need_it) and
