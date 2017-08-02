@@ -1,6 +1,6 @@
-# Rails 4.X Development Standards Guide
-
 [![Sponsor](https://app.codesponsor.io/embed/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/rails_standards.svg)](https://app.codesponsor.io/link/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/rails_standards)
+
+# Rails 4.X Development Standards Guide
 
 ## Approach
 
